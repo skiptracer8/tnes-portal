@@ -685,3 +685,68 @@
     grid-template-columns: 1fr;
   }
 }
+/* ============================================================
+   Mobile Fix for Admin Tables (Manage Students)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* 1. Stop the entire page from scrolling sideways */
+  body, .wrap {
+    overflow-x: hidden;
+  }
+
+  /* 2. Reduce the huge padding on mobile so tables have room */
+  .teacher-panel {
+    padding: 20px 10px;
+  }
+
+  /* 3. Stack the header (Title + Add Student button) */
+  .students-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .students-actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+  
+  .students-actions select {
+    flex: 1;
+  }
+
+  /* 4. Create a swipeable container for the table */
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    border: 1px solid var(--rule);
+  }
+
+  /* 5. Force the table to be wider than the screen so columns don't squish */
+  .students-table {
+    min-width: 550px; 
+    width: 100%;
+  }
+
+  /* 6. Shrink the text and padding inside the table */
+  .students-table th,
+  .students-table td {
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* 7. Make the Edit/Delete buttons fit side-by-side */
+  .student-actions {
+    display: flex;
+    gap: 4px;
+  }
+
+  .btn-small {
+    padding: 6px 8px;
+    font-size: 0.7rem;
+  }
+}
