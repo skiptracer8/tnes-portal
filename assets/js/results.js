@@ -192,9 +192,10 @@
           </tbody>
         </table>
 
-        <section class="report-section">
+                <section class="report-section">
           <h3>Subject-wise Marks — ${esc(reqLabel)}</h3>
-          <table class="report-marks">
+          <div style="overflow-x: auto; width: 100%;">
+            <table class="report-marks">
             <thead>
               <tr>
                 <th>Subject</th>
