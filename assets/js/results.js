@@ -216,6 +216,7 @@
               </tr>
             </tfoot>
           </table>
+          </div>
         </section>
 
         ${student.remarks ? `
@@ -243,6 +244,7 @@
             </thead>
             <tbody>${summaryRows}</tbody>
           </table>
+          </div>
         </section>
 
         <div class="report-signatures">
