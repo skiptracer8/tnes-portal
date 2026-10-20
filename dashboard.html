@@ -71,6 +71,76 @@
     sessionStorage.clear();
     window.location.href = 'index.html';
   }
+    /* ============================================================
+     Mobile Fix for Dashboard
+     ============================================================ */
+  @media (max-width: 768px) {
+    /* 1. Stop the entire page from scrolling sideways */
+    body, .wrap, .dash-main { 
+      overflow-x: hidden; 
+      width: 100%;
+    }
+
+    /* 2. Stack the top header and filter buttons */
+    .dash-header { 
+      flex-direction: column; 
+      align-items: stretch; 
+      padding: 16px;
+    }
+    .filter-group { 
+      flex-wrap: wrap; 
+      width: 100%; 
+      margin-bottom: 10px;
+    }
+    .filter-group select { 
+      flex: 1; 
+      min-width: 100px;
+    }
+    .dash-header .btn {
+      width: 100%;
+    }
+
+    /* 3. Make the tabs wrap nicely instead of overflowing */
+    .dash-tabs { 
+      flex-wrap: wrap; 
+    }
+    .dash-tab { 
+      flex: 1; 
+      text-align: center; 
+      padding: 10px 5px; 
+      font-size: 0.8rem; 
+    }
+
+    /* 4. Stack the side-by-side charts (Grade & Class) */
+    .grid-2col { 
+      grid-template-columns: 1fr; 
+    }
+
+    /* 5. Adjust KPI cards (Total Students, etc.) to a 2x2 grid */
+    .kpi-grid { 
+      grid-template-columns: 1fr 1fr; 
+      gap: 10px; 
+    }
+    .kpi-value { 
+      font-size: 1.5rem; 
+    }
+
+    /* 6. Fix tables so they fit inside their boxes */
+    .panel { 
+      padding: 16px; 
+    }
+    .dash-table th, .dash-table td { 
+      padding: 8px 6px; 
+      font-size: 0.8rem; 
+    }
+    
+    /* 7. Force teacher details to wrap instead of stretching */
+    .teacher-details { 
+      font-size: 0.75rem; 
+      word-wrap: break-word; 
+      max-width: 120px;
+    }
+  }
 </script>
 
 <div id="loadingOverlay"><div class="spinner-large"></div><h3 style="color:var(--navy); font-family:var(--serif);">Generating Reports...</h3></div>
