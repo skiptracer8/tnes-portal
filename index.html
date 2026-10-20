@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monthly Results — The National Educator School System, 335 W/B</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* Modal styles for Staff Login */
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(14,42,71,0.6); z-index: 1000; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: #fff; width: 100%; max-width: 400px; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; }
+  .modal-head { background: var(--navy); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .modal-head h3 { color: #fff; margin: 0; font-family: 'Lora', serif; font-size: 1.2rem; }
+  .modal-close { background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; line-height: 1; opacity: 0.7; }
+  .modal-close:hover { opacity: 1; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="crest">
+      <div class="crest-mark" id="crestMark">TNES</div>
+      <div class="crest-text">
+        <div class="name" id="crestName">The National Educator School System</div>
+        <div class="sub">Chak 335 W/B &middot; Est. 2005</div>
+      </div>
+    </div>
+    <div class="masthead-meta">
+      <strong>Result Portal</strong>
+      <button class="btn btn-outline" onclick="document.getElementById('staffLoginModal').classList.add('show')" style="padding: 6px 12px; font-size: 0.8rem; margin-top: 5px;">Staff Login</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <div class="page-eyebrow">Monthly Assessment</div>
+    <h1>Results &amp; Progress Report</h1>
+    <p>Enter the student's class, roll number, month, and year to view the complete report card.</p>
+  </div>
+</div>
+
+<main class="section">
+  <div class="wrap">
+    <section class="search-panel no-print">
+      <h2>Find a Result</h2>
+      <p class="lead">Results are published within three days of each monthly test. If your child's result is not yet showing, please contact the school office.</p>
+
+      <form id="resultForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="classSelect">Class</label>
+            <select id="classSelect" required></select>
+          </div>
+          <div class="field">
+            <label for="rollInput">Roll Number</label>
+            <input id="rollInput" type="text" inputmode="numeric" placeholder="e.g. 24" autocomplete="off" required>
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="monthSelect">Month</label>
+            <select id="monthSelect" required></select>
+          </div>
+          <div class="field">
+            <label for="yearInput">Year</label>
+            <input id="yearInput" type="number" min="2020" max="2035" required>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="submitBtn" type="submit">View Report Card</button>
+        <div class="msg" id="formMsg"></div>
+      </form>
+    </section>
+    <div id="resultOut"></div>
+  </div>
+</main>
+
+<!-- Staff Login Modal -->
+<div id="staffLoginModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Staff Login</h3>
+      <button class="modal-close" onclick="document.getElementById('staffLoginModal').classList.remove('show')">×</button>
+    </div>
+    <form id="staffLoginForm" style="padding: 24px;">
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="staffEmail" required placeholder="name@school.com">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" id="staffPassword" required>
+      </div>
+      <div class="msg" id="staffLoginMsg"></div>
+      <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Log In</button>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <span id="footCopyright">&copy; The National Educator School System, 335 W/B.</span>
+    <span id="footAddress">Chak 335 W/B, Tehsil Mailsi, District Vehari</span>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/results.js"></script>
+<script>
+  // Public Portal Init
+  document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('crestMark').textContent = SCHOOL.short;
+    document.getElementById('crestName').textContent = SCHOOL.name;
+    document.getElementById('footCopyright').textContent = '\u00A9 ' + new Date().getFullYear() + ' ' + SCHOOL.name;
+    document.getElementById('footAddress').textContent = SCHOOL.address;
+  });
+
+  // Staff Login Logic
+  document.getElementById('staffLoginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('staffEmail').value.trim();
+    const password = document.getElementById('staffPassword').value.trim();
+    const errorEl = document.getElementById('staffLoginMsg');
+    
+    errorEl.className = 'msg show info'; 
+    errorEl.textContent = 'Verifying...';
+
+    try {
+      const res = await fetch(RESULTS.proxyUrl, {
+        method: 'POST', 
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ action: 'staff_login', email: email, password: password })
+      });
+      
+      const data = await res.json();
+      if (data.error) throw new Error(data.error);
+
+      // Save Session
+      sessionStorage.setItem('tnes_token', data.token);
+      sessionStorage.setItem('tnes_role', data.role);
+      sessionStorage.setItem('tnes_name', data.name);
+
+      // Redirect based on role
+      if (data.role === 'Principal') {
+        window.location.href = 'dashboard.html';
+      } else {
+        window.location.href = 'admin.html';
+      }
+
+    } catch (err) {
+      errorEl.className = 'msg show err';
+      errorEl.textContent = err.message || 'Login failed. Please check your credentials.';
+    }
+  });
+</script>
+</body>
+</html>
