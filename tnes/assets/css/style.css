@@ -1,0 +1,713 @@
+/* ============================================================
+   The National Educator School System — Result Portal
+   Typeface: Lora (headings) · Source Sans 3 (body)
+   Palette:  institutional navy · antique gold · cream paper
+   ============================================================ */
+
+:root {
+  --ink:        #1a1a1a;
+  --ink-soft:   #3d3d3d;
+  --muted:      #6d6d6d;
+  --paper:      #faf8f3;
+  --paper-2:    #f3efe6;
+  --white:      #ffffff;
+  --navy:       #1e3a5f;
+  --navy-dark:  #142a45;
+  --gold:       #8a6d3b;
+  --gold-soft:  #c9b27a;
+  --maroon:     #7a1f2b;
+  --rule:       #d4cfc4;
+  --rule-soft:  #e8e3d8;
+  --rule-dark:  #b8b2a3;
+  --pass:       #2d6a4f;
+  --fail:       #9d1f1f;
+
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --sans:  'Source Sans 3', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+  --radius: 2px;
+  --max:    1080px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+img { max-width: 100%; display: block; }
+a   { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--navy);
+  margin: 0 0 .5em;
+  letter-spacing: -0.003em;
+}
+h1 { font-size: clamp(1.7rem, 3.2vw, 2.25rem); }
+h2 { font-size: clamp(1.3rem, 2.2vw, 1.65rem); }
+h3 { font-size: 1.15rem; }
+p  { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+.wrap   { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+.muted  { color: var(--muted); }
+.center { text-align: center; }
+
+/* ------------------------------------------------------------
+   Top strip
+   ------------------------------------------------------------ */
+.topbar {
+  background: var(--navy-dark);
+  color: var(--gold-soft);
+  font-size: .78rem;
+  letter-spacing: .02em;
+  border-bottom: 1px solid #0d1e33;
+}
+.topbar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.topbar a { color: inherit; }
+.topbar a:hover { color: var(--white); }
+.topbar-info { display: flex; gap: 22px; flex-wrap: wrap; }
+
+/* ------------------------------------------------------------
+   Masthead
+   ------------------------------------------------------------ */
+.masthead {
+  background: var(--white);
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0;
+}
+.masthead .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.crest {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.crest-mark {
+  width: 54px;
+  height: 54px;
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .06em;
+  color: var(--navy);
+  position: relative;
+  flex: 0 0 auto;
+}
+.crest-mark::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+.crest-text .name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 0;
+}
+.crest-text .sub {
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.masthead-meta {
+  font-size: .82rem;
+  color: var(--ink-soft);
+  text-align: right;
+  line-height: 1.5;
+}
+.masthead-meta strong {
+  display: block;
+  font-family: var(--serif);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: .86rem;
+}
+
+/* ------------------------------------------------------------
+   Page header (dark banner)
+   ------------------------------------------------------------ */
+.page-head {
+  background: var(--navy);
+  color: var(--paper-2);
+  padding: 52px 0 46px;
+  border-bottom: 3px solid var(--gold);
+}
+.page-eyebrow {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.page-head h1 {
+  color: var(--white);
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.page-head p {
+  color: #b6c4d6;
+  max-width: 580px;
+  margin: 0;
+  font-size: .97rem;
+}
+
+/* ------------------------------------------------------------
+   Search panel
+   ------------------------------------------------------------ */
+.section {
+  padding: 44px 0 72px;
+}
+
+.search-panel {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--navy);
+  padding: 32px;
+  margin-bottom: 32px;
+}
+.search-panel h2 {
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+.search-panel .lead {
+  font-size: .9rem;
+  color: var(--muted);
+  margin: 0 0 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.field {
+  margin-bottom: 20px;
+}
+.field label {
+  display: block;
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 7px;
+}
+.field input,
+.field select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--white);
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, .12);
+}
+.field-hint {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn-primary {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.btn-primary:hover {
+  background: var(--navy-dark);
+  border-color: var(--navy-dark);
+}
+.btn-primary:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--navy);
+  border-color: var(--navy);
+}
+.btn-outline:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.msg {
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  font-size: .9rem;
+  margin-top: 18px;
+  display: none;
+  border: 1px solid transparent;
+}
+.msg.show { display: block; }
+.msg.err  { background: #fdf3f3; color: var(--fail); border-color: #eecaca; }
+.msg.ok   { background: #f1f7f3; color: var(--pass); border-color: #c8e0d0; }
+.msg.info { background: var(--paper-2); color: var(--ink-soft); border-color: var(--rule); }
+
+/* ------------------------------------------------------------
+   Report card (the main result document)
+   ------------------------------------------------------------ */
+.report {
+  background: var(--white);
+  border: 1px solid var(--rule-dark);
+  margin-top: 32px;
+  box-shadow: 0 1px 2px rgba(20, 42, 69, .05);
+}
+
+.report-head {
+  padding: 30px 32px 24px;
+  border-bottom: 3px double var(--navy);
+  text-align: center;
+}
+.report-crest {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 14px;
+  border: 2px solid var(--navy);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--navy);
+  position: relative;
+}
+.report-crest::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+.report-head h2 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.report-head .addr {
+  font-size: .74rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.report-head .doc-title {
+  display: inline-block;
+  padding: 6px 22px;
+  border-top: 1px solid var(--rule-dark);
+  border-bottom: 1px solid var(--rule-dark);
+  font-family: var(--serif);
+  font-size: .92rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  font-weight: 600;
+}
+
+.report-meta {
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  font-size: .78rem;
+  color: var(--muted);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.report-meta strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: .85rem;
+}
+
+.report-info {
+  width: 100%;
+  border-collapse: collapse;
+}
+.report-info th,
+.report-info td {
+  padding: 12px 32px;
+  text-align: left;
+  font-size: .92rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.report-info th {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  width: 110px;
+}
+.report-info td {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.month-select {
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-2);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.month-select label {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 700;
+}
+.month-select select {
+  padding: 8px 14px;
+  border: 1px solid var(--rule-dark);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: .9rem;
+  background: var(--white);
+  color: var(--ink);
+  min-width: 220px;
+}
+.month-select select:focus {
+  outline: none;
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(30, 58, 95, .12);
+}
+
+.report-section {
+  border-bottom: 1px solid var(--rule);
+}
+.report-section:last-of-type {
+  border-bottom: none;
+}
+.report-section h3 {
+  font-family: var(--sans);
+  font-size: .72rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 700;
+  padding: 24px 32px 0;
+  margin: 0 0 14px;
+}
+
+/* ---- Marks table ---- */
+.report-marks {
+  width: 100%;
+  border-collapse: collapse;
+}
+.report-marks th,
+.report-marks td {
+  padding: 11px 16px;
+  font-size: .9rem;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.report-marks thead th {
+  font-family: var(--sans);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--paper-2);
+  font-weight: 700;
+  text-align: left;
+  border-top: 1px solid var(--rule-dark);
+  border-bottom: 1px solid var(--rule-dark);
+}
+.report-marks th:first-child,
+.report-marks td:first-child { padding-left: 32px; }
+.report-marks th:last-child,
+.report-marks td:last-child { padding-right: 32px; }
+.report-marks .num { text-align: right; }
+.report-marks tbody td { color: var(--ink); }
+.report-marks .pass { color: var(--pass); font-weight: 600; }
+.report-marks .fail { color: var(--fail); font-weight: 600; }
+
+.report-marks tfoot th,
+.report-marks tfoot td {
+  padding: 13px 16px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 600;
+  border-top: 2px solid var(--navy-dark);
+  border-bottom: none;
+  font-size: .9rem;
+}
+.report-marks tfoot th:first-child,
+.report-marks tfoot td:first-child { padding-left: 32px; }
+.report-marks tfoot th:last-child,
+.report-marks tfoot td:last-child { padding-right: 32px; }
+.report-marks tfoot .label {
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  font-weight: 600;
+}
+.report-marks tfoot .num {
+  color: var(--gold-soft);
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+/* ---- Remark ---- */
+.report-remark {
+  padding: 20px 32px 24px;
+}
+.report-remark strong {
+  display: block;
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.report-remark p {
+  font-family: var(--serif);
+  font-size: .95rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ---- Chart ---- */
+.chart-wrap {
+  padding: 8px 32px 28px;
+}
+.chart-wrap svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---- Signatures ---- */
+.report-signatures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding: 44px 32px 28px;
+  border-top: 1px solid var(--rule);
+}
+.sig {
+  text-align: center;
+  font-family: var(--sans);
+  font-size: .7rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.sig::before {
+  content: "";
+  display: block;
+  height: 34px;
+  border-bottom: 1px solid var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+/* ---- Print / Reset actions (outside the report) ---- */
+.result-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* ------------------------------------------------------------
+   Spinner
+   ------------------------------------------------------------ */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,.35);
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ------------------------------------------------------------
+   Footer
+   ------------------------------------------------------------ */
+.footer {
+  background: var(--navy-dark);
+  color: #a8b4c2;
+  padding: 26px 0;
+  font-size: .82rem;
+  border-top: 3px solid var(--gold);
+  margin-top: 72px;
+}
+.footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer a { color: inherit; }
+.footer a:hover { color: var(--white); }
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 720px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .report-head, .report-info th, .report-info td,
+  .report-marks th, .report-marks td, .report-section h3,
+  .report-remark, .chart-wrap { padding-left: 20px; padding-right: 20px; }
+  .month-select { padding-left: 20px; padding-right: 20px; }
+  .report-signatures { padding-left: 20px; padding-right: 20px; gap: 20px; }
+  .search-panel { padding: 24px 20px; }
+  .masthead .wrap { flex-wrap: wrap; }
+  .masthead-meta { text-align: left; }
+  .section { padding: 32px 0 56px; }
+  .page-head { padding: 36px 0 32px; }
+  .topbar-info { display: none; }
+  .footer .wrap { justify-content: center; text-align: center; }
+}
+
+/* ------------------------------------------------------------
+   Print (report card only)
+   ------------------------------------------------------------ */
+@media print {
+  @page { size: A4; margin: 15mm; }
+
+  body { background: #fff; font-size: 10.5pt; color: #000; }
+
+  .topbar,
+  .masthead,
+  .page-head,
+  .footer,
+  .search-panel,
+  .result-actions,
+  .month-select,
+  .no-print { display: none !important; }
+
+  .wrap { max-width: none; padding: 0; }
+  .section { padding: 0; }
+
+  .report {
+    border: 1.5px solid #000;
+    box-shadow: none;
+    margin: 0;
+  }
+  .report-head { border-bottom-color: #000; padding-top: 18px; padding-bottom: 16px; }
+  .report-head h2 { color: #000; font-size: 15pt; }
+  .report-crest { border-color: #000; }
+  .report-crest::after { border-color: #888; }
+  .doc-title { color: #000; border-color: #000; }
+  .report-meta { color: #333; border-color: #999; }
+  .report-meta strong { color: #000; }
+  .report-info th, .report-info td { border-color: #999; padding-top: 8px; padding-bottom: 8px; }
+  .report-info th { color: #555; }
+  .report-marks thead th {
+    background: #f0f0f0;
+    color: #000;
+    border-color: #333;
+  }
+  .report-marks th, .report-marks td { border-color: #ccc; padding-top: 8px; padding-bottom: 8px; }
+  .report-marks tfoot th, .report-marks tfoot td { background: #000; color: #fff; }
+  .report-marks tfoot .label,
+  .report-marks tfoot .num { color: #fff; }
+  .report-marks tbody tr:nth-child(even) { background: #fafafa; }
+  .report-remark p { color: #000; font-style: italic; }
+  .report-remark strong { color: #000; }
+  .report-section h3 { color: #000; }
+  .chart-wrap svg { max-width: 100%; }
+  .report-signatures { padding-top: 34px; padding-bottom: 18px; }
+  .sig { color: #000; }
+  .sig::before { border-bottom-color: #000; }
+
+  .report-section,
+  .report-remark,
+  .report-signatures,
+  .chart-wrap { page-break-inside: avoid; }
+}
+.report-marks tbody tr.current td {
+  background: #fdf8e8;
+  font-weight: 600;
+}
+.report-marks tbody tr.current td:first-child::before {
+  content: "▸ ";
+  color: var(--gold);
+}
