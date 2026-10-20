@@ -46,11 +46,106 @@
   .teacher-details { font-size: 0.8rem; color: var(--muted); display: block; margin-top: 2px; }
   .medal { font-size: 1.2rem; line-height: 1; display: inline-block; width: 24px; text-align: center; }
   .chart-container { position: relative; height: 300px; width: 100%; }
-  @media print {
-    .masthead, .dash-tabs, .btn, select, .filter-group, #loadingOverlay, button { display: none !important; }
-    .dash-main { padding: 0; background: #fff; }
-    .panel, .kpi-card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
-    .tab-content { display: block !important; }
+   /* ============================================================
+     Mobile Fix for Dashboard (Single Column Stacking)
+     ============================================================ */
+  @media (max-width: 768px) {
+    /* Stop the whole page from scrolling sideways */
+    body, html { 
+      overflow-x: hidden; 
+    }
+    .dash-main { 
+      padding: 15px 0; 
+    }
+
+    /* 1. Stack the Header (Title, Dropdowns, Print Button) */
+    .dash-header { 
+      flex-direction: column; 
+      align-items: stretch; 
+      padding: 15px; 
+      gap: 12px;
+    }
+    .filter-group { 
+      flex-direction: column; 
+      align-items: stretch; 
+      width: 100%; 
+      gap: 10px; 
+    }
+    .filter-group h1 { 
+      font-size: 1.3rem; 
+      margin: 0 0 5px 0; 
+      text-align: center;
+    }
+    .filter-group select { 
+      width: 100%; 
+      max-width: 100%; 
+    }
+    .dash-header .btn { 
+      width: 100%; 
+      padding: 12px;
+    }
+
+    /* 2. Make Tabs stack nicely */
+    .dash-tabs { 
+      flex-wrap: wrap; 
+      gap: 5px; 
+      border-bottom: none; 
+      justify-content: center;
+    }
+    .dash-tab { 
+      flex: 1 1 30%; 
+      font-size: 0.8rem; 
+      padding: 10px 5px; 
+      text-align: center; 
+      border-bottom: 2px solid var(--rule); 
+    }
+    .dash-tab.active { 
+      border-bottom-color: var(--navy); 
+    }
+
+    /* 3. Force KPI Cards into 1 full-width column */
+    .kpi-grid { 
+      grid-template-columns: 1fr !important; 
+      gap: 12px; 
+    }
+    .kpi-card { 
+      padding: 20px; 
+      text-align: center; 
+    }
+
+    /* 4. Force Charts to stack in 1 column */
+    .grid-2col { 
+      grid-template-columns: 1fr !important; 
+      gap: 15px; 
+    }
+    .chart-container { 
+      height: 250px !important; 
+    }
+
+    /* 5. Make Tables scrollable without breaking the page */
+    .panel { 
+      padding: 15px; 
+      overflow-x: hidden; 
+    }
+    .dash-table { 
+      display: block;
+      width: 100%;
+      overflow-x: auto; 
+      -webkit-overflow-scrolling: touch; 
+      white-space: nowrap; /* Prevents text from wrapping and crushing columns */
+      font-size: 0.85rem;
+    }
+    .dash-table th, .dash-table td { 
+      padding: 10px; 
+    }
+    
+    /* 6. Fix Teacher Details text so it doesn't stretch the table */
+    .teacher-details { 
+      white-space: normal; /* Allow this specific text to wrap */
+      font-size: 0.75rem; 
+      max-width: 200px; 
+      word-wrap: break-word;
+    }
   }
 </style>
 </head>
