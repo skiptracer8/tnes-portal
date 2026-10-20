@@ -711,3 +711,48 @@ p:last-child { margin-bottom: 0; }
   content: "▸ ";
   color: var(--gold);
 }
+/* ============================================================
+   Mobile Fix for Report Card Tables
+   ============================================================ */
+@media (max-width: 720px) {
+  /* Allow the report card to fit the screen */
+  .report {
+    border: none; /* Looks cleaner on mobile */
+    width: 100%;
+  }
+
+  /* Shrink the table padding and font so all columns fit */
+  .report-marks th, 
+  .report-marks td {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+    word-break: break-word;
+  }
+
+  /* Remove the huge left/right padding on mobile */
+  .report-marks th:first-child, 
+  .report-marks td:first-child { padding-left: 8px; }
+  .report-marks th:last-child, 
+  .report-marks td:last-child { padding-right: 8px; }
+
+  /* Shrink the total footer row slightly */
+  .report-marks tfoot th, 
+  .report-marks tfoot td {
+    padding: 10px 4px;
+    font-size: 0.85rem;
+  }
+
+  /* Fix the Student info table (Name / Roll No) */
+  .report-info th, 
+  .report-info td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Stack the meta info (Class, Month, etc.) so they don't overlap */
+  .report-meta {
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
+  }
+}
